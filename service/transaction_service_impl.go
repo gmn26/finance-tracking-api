@@ -3,6 +3,7 @@ package service
 import (
 	"log"
 
+	"github.com/gmn26/finance-tracking-api/data/request"
 	"github.com/gmn26/finance-tracking-api/model"
 	"github.com/gmn26/finance-tracking-api/repository"
 	"github.com/go-playground/validator/v10"
@@ -20,12 +21,13 @@ func TransactionRepositoryImpl(transactionRepository repository.TransactionRepos
 	}
 }
 
-// Create param type request.CreateTransactionRequest
-func (t TransactionServiceImplType) Create(transaction any) {
+func (t TransactionServiceImplType) Create(transaction request.CreateTransactionRequest) {
 	err := t.Validate.Struct(transaction)
-	log.Fatal(err)
+	if err != nil {
+		log.Fatal(err)
+	}
 	transactionModel := model.Transaction{
-		TransactionName: "transaction.name",
+		TransactionName: transaction.TransactionName,
 	}
 	t.TransactionRepository.Create(transactionModel)
 }
