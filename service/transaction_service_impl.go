@@ -28,6 +28,8 @@ func (t TransactionServiceImplType) Create(transaction request.CreateTransaction
 	}
 	transactionModel := model.Transaction{
 		TransactionName: transaction.TransactionName,
+		TransactionType: transaction.TransactionType,
+		TransactionTime: transaction.TransactionTime,
 	}
 	t.TransactionRepository.Create(transactionModel)
 }
