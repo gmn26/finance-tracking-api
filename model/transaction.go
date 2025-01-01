@@ -16,6 +16,6 @@ const (
 type Transaction struct {
 	Id              uuid.UUID       `gorm:"type:uuid;primaryKey"`
 	TransactionName string          `gorm:"type:varchar(255);not null"`
-	TransactionType TransactionType `gorm:"type:enum('income','outcome');not null"`
+	TransactionType TransactionType `gorm:"type:varchar(255);not null"`
 	TransactionTime time.Time       `gorm:"not null"`
 }
